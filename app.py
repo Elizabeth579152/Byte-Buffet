@@ -33,6 +33,15 @@ def home():
 def select():
     return render_template("recipe_select.html")
 
+@app.route("/recipe/<name>/home")
+def get_recipe(name):
+    """
+    Displays specific recipes dynamically
+    """
+    recipes = get_recipes(name)
+    instructions = get_instructions(name)
+    return render_template('recipe_home.html', name=recipes, instructions=instructions,recipe_name=name)
+
 @app.route("/alfredo/home")
 def alfredo_home():
     return render_template("alfredo/home.html")
